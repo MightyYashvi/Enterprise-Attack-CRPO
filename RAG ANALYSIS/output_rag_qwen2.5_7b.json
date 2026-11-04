@@ -1,0 +1,66 @@
+[
+  {
+    "cve": "CVE-2021-21148",
+    "techniques": [
+      {
+        "technique_id": "T1185",
+        "technique_name": "Browser Session Hijacking",
+        "link": "https://attack.mitre.org/techniques/T1185/",
+        "confidence": 0.8,
+        "justification": "Exploiting the heap buffer overflow in V8 can allow an attacker to manipulate browser sessions and hijack them."
+      },
+      {
+        "technique_id": "T1203",
+        "technique_name": "Exploitation for Client Execution",
+        "link": "https://attack.mitre.org/techniques/T1203/",
+        "confidence": 0.9,
+        "justification": "The heap buffer overflow vulnerability can be exploited to execute arbitrary code in the context of the victim's browser session."
+      },
+      {
+        "technique_id": "T1606",
+        "technique_name": "Forge Web Credentials",
+        "link": "https://attack.mitre.org/techniques/T1606/",
+        "confidence": 0.7,
+        "justification": "By exploiting the vulnerability, an attacker can potentially forge web credentials to gain unauthorized access to web applications or services."
+      }
+    ]
+  },
+  {
+    "cve": "CVE-2020-1472",
+    "techniques": [
+      {
+        "technique_id": "T1548",
+        "technique_name": "Abuse Elevation Control Mechanism",
+        "link": "https://attack.mitre.org/techniques/T1548/",
+        "confidence": 0.9,
+        "justification": "The attacker can exploit the vulnerability to take over the domain controller, effectively circumventing the normal privilege controls."
+      },
+      {
+        "technique_id": "T1210",
+        "technique_name": "Exploitation of Remote Services",
+        "link": "https://attack.mitre.org/techniques/T1210/",
+        "confidence": 0.8,
+        "justification": "The attacker establishes a vulnerable Netlogon secure channel connection to exploit the vulnerability over the network."
+      }
+    ]
+  },
+  {
+    "cve": "CVE-2021-21975",
+    "techniques": [
+      {
+        "technique_id": "T1190",
+        "technique_name": "Exploit Public-Facing Application",
+        "link": "https://attack.mitre.org/techniques/T1190/",
+        "confidence": 0.9,
+        "justification": "The vulnerability is in an internet-facing web application/API, allowing an attacker to exploit it to perform an SSRF attack."
+      },
+      {
+        "technique_id": "T1675",
+        "technique_name": "ESXi Administration Command",
+        "link": "https://attack.mitre.org/techniques/T1675/",
+        "confidence": 0.7,
+        "justification": "If the stolen credentials are used to access an ESXi host, the attacker could potentially execute commands on guest machines hosted within the ESXi virtual environment."
+      }
+    ]
+  }
+]

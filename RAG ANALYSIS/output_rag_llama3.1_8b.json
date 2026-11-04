@@ -1,0 +1,73 @@
+[
+  {
+    "cve": "CVE-2021-21148",
+    "techniques": [
+      {
+        "technique_id": "T1189",
+        "technique_name": "Drive-by Compromise",
+        "link": "https://attack.mitre.org/techniques/T1189/",
+        "confidence": 0.9,
+        "justification": "The attacker exploits a heap buffer overflow in V8 in Google Chrome, which is triggered when the victim visits a malicious page."
+      },
+      {
+        "technique_id": "T1204",
+        "technique_name": "User Execution",
+        "link": "https://attack.mitre.org/techniques/T1204/",
+        "confidence": 0.8,
+        "justification": "The attack requires the victim to visit a malicious page, which is a form of user execution."
+      }
+    ]
+  },
+  {
+    "cve": "CVE-2020-1472",
+    "techniques": [
+      {
+        "technique_id": "T1548",
+        "technique_name": "Abuse Elevation Control Mechanism",
+        "link": "https://attack.mitre.org/techniques/T1548/",
+        "confidence": 0.9,
+        "justification": "The attacker can use the vulnerable Netlogon secure channel connection to gain higher-level permissions on the domain controller."
+      },
+      {
+        "technique_id": "T1068",
+        "technique_name": "Exploitation for Privilege Escalation",
+        "link": "https://attack.mitre.org/techniques/T1068/",
+        "confidence": 0.8,
+        "justification": "The attacker can exploit the vulnerability to elevate privileges on the domain controller."
+      },
+      {
+        "technique_id": "T1210",
+        "technique_name": "Exploitation of Remote Services",
+        "link": "https://attack.mitre.org/techniques/T1210/",
+        "confidence": 0.7,
+        "justification": "The flaw is triggered over the network against the Netlogon service on a remote domain controller."
+      }
+    ]
+  },
+  {
+    "cve": "CVE-2021-21975",
+    "techniques": [
+      {
+        "technique_id": "T1190",
+        "technique_name": "Exploit Public-Facing Application",
+        "link": "https://attack.mitre.org/techniques/T1190/",
+        "confidence": 0.9,
+        "justification": "The vulnerability is in an internet-facing web application/API, allowing a malicious actor to exploit it over the network."
+      },
+      {
+        "technique_id": "T1212",
+        "technique_name": "Exploitation for Credential Access",
+        "link": "https://attack.mitre.org/techniques/T1212/",
+        "confidence": 0.8,
+        "justification": "The attack vector is network-based and the goal is to steal administrative credentials, which is a classic case of exploitation for credential access."
+      },
+      {
+        "technique_id": "T1539",
+        "technique_name": "Steal Web Session Cookie",
+        "link": "https://attack.mitre.org/techniques/T1539/",
+        "confidence": 0.7,
+        "justification": "Although the description mentions stealing administrative credentials, it's possible that the attacker could also use the SSRF vulnerability to steal web session cookies and gain access to the application as an authenticated user."
+      }
+    ]
+  }
+]

@@ -1,0 +1,206 @@
+[
+  {
+    "cve": "CVE-2021-21148",
+    "techniques": [
+      {
+        "technique_id": "T1189",
+        "technique_name": "Drive-by Compromise",
+        "link": "https://attack.mitre.org/techniques/T1189/",
+        "chosen_by": [
+          "llama3.1:8b"
+        ],
+        "llm_confidence": {
+          "llama3.1:8b": 0.9
+        },
+        "justification": {
+          "llama3.1:8b": "The attacker exploits a heap buffer overflow in V8 in Google Chrome, which is triggered when the victim visits a malicious page."
+        },
+        "agreement": "one"
+      },
+      {
+        "technique_id": "T1204",
+        "technique_name": "User Execution",
+        "link": "https://attack.mitre.org/techniques/T1204/",
+        "chosen_by": [
+          "llama3.1:8b"
+        ],
+        "llm_confidence": {
+          "llama3.1:8b": 0.8
+        },
+        "justification": {
+          "llama3.1:8b": "The attack requires the victim to visit a malicious page, which is a form of user execution."
+        },
+        "agreement": "one"
+      },
+      {
+        "technique_id": "T1185",
+        "technique_name": "Browser Session Hijacking",
+        "link": "https://attack.mitre.org/techniques/T1185/",
+        "chosen_by": [
+          "qwen2.5:7b"
+        ],
+        "llm_confidence": {
+          "qwen2.5:7b": 0.8
+        },
+        "justification": {
+          "qwen2.5:7b": "Exploiting the heap buffer overflow in V8 can allow an attacker to manipulate browser sessions and hijack them."
+        },
+        "agreement": "one"
+      },
+      {
+        "technique_id": "T1203",
+        "technique_name": "Exploitation for Client Execution",
+        "link": "https://attack.mitre.org/techniques/T1203/",
+        "chosen_by": [
+          "qwen2.5:7b"
+        ],
+        "llm_confidence": {
+          "qwen2.5:7b": 0.9
+        },
+        "justification": {
+          "qwen2.5:7b": "The heap buffer overflow vulnerability can be exploited to execute arbitrary code in the context of the victim's browser session."
+        },
+        "agreement": "one"
+      },
+      {
+        "technique_id": "T1606",
+        "technique_name": "Forge Web Credentials",
+        "link": "https://attack.mitre.org/techniques/T1606/",
+        "chosen_by": [
+          "qwen2.5:7b"
+        ],
+        "llm_confidence": {
+          "qwen2.5:7b": 0.7
+        },
+        "justification": {
+          "qwen2.5:7b": "By exploiting the vulnerability, an attacker can potentially forge web credentials to gain unauthorized access to web applications or services."
+        },
+        "agreement": "one"
+      }
+    ]
+  },
+  {
+    "cve": "CVE-2020-1472",
+    "techniques": [
+      {
+        "technique_id": "T1548",
+        "technique_name": "Abuse Elevation Control Mechanism",
+        "link": "https://attack.mitre.org/techniques/T1548/",
+        "chosen_by": [
+          "llama3.1:8b",
+          "qwen2.5:7b"
+        ],
+        "llm_confidence": {
+          "llama3.1:8b": 0.9,
+          "qwen2.5:7b": 0.9
+        },
+        "justification": {
+          "llama3.1:8b": "The attacker can use the vulnerable Netlogon secure channel connection to gain higher-level permissions on the domain controller.",
+          "qwen2.5:7b": "The attacker can exploit the vulnerability to take over the domain controller, effectively circumventing the normal privilege controls."
+        },
+        "agreement": "both"
+      },
+      {
+        "technique_id": "T1210",
+        "technique_name": "Exploitation of Remote Services",
+        "link": "https://attack.mitre.org/techniques/T1210/",
+        "chosen_by": [
+          "llama3.1:8b",
+          "qwen2.5:7b"
+        ],
+        "llm_confidence": {
+          "llama3.1:8b": 0.7,
+          "qwen2.5:7b": 0.8
+        },
+        "justification": {
+          "llama3.1:8b": "The flaw is triggered over the network against the Netlogon service on a remote domain controller.",
+          "qwen2.5:7b": "The attacker establishes a vulnerable Netlogon secure channel connection to exploit the vulnerability over the network."
+        },
+        "agreement": "both"
+      },
+      {
+        "technique_id": "T1068",
+        "technique_name": "Exploitation for Privilege Escalation",
+        "link": "https://attack.mitre.org/techniques/T1068/",
+        "chosen_by": [
+          "llama3.1:8b"
+        ],
+        "llm_confidence": {
+          "llama3.1:8b": 0.8
+        },
+        "justification": {
+          "llama3.1:8b": "The attacker can exploit the vulnerability to elevate privileges on the domain controller."
+        },
+        "agreement": "one"
+      }
+    ]
+  },
+  {
+    "cve": "CVE-2021-21975",
+    "techniques": [
+      {
+        "technique_id": "T1190",
+        "technique_name": "Exploit Public-Facing Application",
+        "link": "https://attack.mitre.org/techniques/T1190/",
+        "chosen_by": [
+          "llama3.1:8b",
+          "qwen2.5:7b"
+        ],
+        "llm_confidence": {
+          "llama3.1:8b": 0.9,
+          "qwen2.5:7b": 0.9
+        },
+        "justification": {
+          "llama3.1:8b": "The vulnerability is in an internet-facing web application/API, allowing a malicious actor to exploit it over the network.",
+          "qwen2.5:7b": "The vulnerability is in an internet-facing web application/API, allowing an attacker to exploit it to perform an SSRF attack."
+        },
+        "agreement": "both"
+      },
+      {
+        "technique_id": "T1212",
+        "technique_name": "Exploitation for Credential Access",
+        "link": "https://attack.mitre.org/techniques/T1212/",
+        "chosen_by": [
+          "llama3.1:8b"
+        ],
+        "llm_confidence": {
+          "llama3.1:8b": 0.8
+        },
+        "justification": {
+          "llama3.1:8b": "The attack vector is network-based and the goal is to steal administrative credentials, which is a classic case of exploitation for credential access."
+        },
+        "agreement": "one"
+      },
+      {
+        "technique_id": "T1539",
+        "technique_name": "Steal Web Session Cookie",
+        "link": "https://attack.mitre.org/techniques/T1539/",
+        "chosen_by": [
+          "llama3.1:8b"
+        ],
+        "llm_confidence": {
+          "llama3.1:8b": 0.7
+        },
+        "justification": {
+          "llama3.1:8b": "Although the description mentions stealing administrative credentials, it's possible that the attacker could also use the SSRF vulnerability to steal web session cookies and gain access to the application as an authenticated user."
+        },
+        "agreement": "one"
+      },
+      {
+        "technique_id": "T1675",
+        "technique_name": "ESXi Administration Command",
+        "link": "https://attack.mitre.org/techniques/T1675/",
+        "chosen_by": [
+          "qwen2.5:7b"
+        ],
+        "llm_confidence": {
+          "qwen2.5:7b": 0.7
+        },
+        "justification": {
+          "qwen2.5:7b": "If the stolen credentials are used to access an ESXi host, the attacker could potentially execute commands on guest machines hosted within the ESXi virtual environment."
+        },
+        "agreement": "one"
+      }
+    ]
+  }
+]
