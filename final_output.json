@@ -1,0 +1,203 @@
+[
+  {
+    "cve": "CVE-2021-21148",
+    "techniques": [
+      {
+        "technique_id": "T1210",
+        "technique_name": "Exploitation of Remote Services",
+        "link": "https://attack.mitre.org/techniques/T1210/",
+        "chosen_by": [
+          "llama3.1:8b",
+          "qwen2.5:7b"
+        ],
+        "llm_confidence": {
+          "llama3.1:8b": 0.9,
+          "qwen2.5:7b": 0.8
+        },
+        "justification": {
+          "llama3.1:8b": "The vulnerability is triggered by a remote attacker exploiting a heap buffer overflow in the V8 engine, which is a service in the Chrome browser.",
+          "qwen2.5:7b": "The attacker can exploit the vulnerability via a network request, specifically by tricking the victim into visiting a malicious page."
+        },
+        "agreement": "both"
+      },
+      {
+        "technique_id": "T1204",
+        "technique_name": "User Execution",
+        "link": "https://attack.mitre.org/techniques/T1204/",
+        "chosen_by": [
+          "llama3.1:8b"
+        ],
+        "llm_confidence": {
+          "llama3.1:8b": 0.8
+        },
+        "justification": {
+          "llama3.1:8b": "The attacker requires the victim to visit a malicious page, which is a form of user execution."
+        },
+        "agreement": "one"
+      },
+      {
+        "technique_id": "T1059",
+        "technique_name": "Command and Scripting Interpreter",
+        "link": "https://attack.mitre.org/techniques/T1059/",
+        "chosen_by": [
+          "qwen2.5:7b"
+        ],
+        "llm_confidence": {
+          "qwen2.5:7b": 0.9
+        },
+        "justification": {
+          "qwen2.5:7b": "Exploiting the heap buffer overflow allows the attacker to execute arbitrary code through a crafted HTML page, which is essentially running a command or script."
+        },
+        "agreement": "one"
+      }
+    ]
+  },
+  {
+    "cve": "CVE-2020-1472",
+    "techniques": [
+      {
+        "technique_id": "T1068",
+        "technique_name": "Exploitation for Privilege Escalation",
+        "link": "https://attack.mitre.org/techniques/T1068/",
+        "chosen_by": [
+          "llama3.1:8b",
+          "qwen2.5:7b"
+        ],
+        "llm_confidence": {
+          "llama3.1:8b": 0.8,
+          "qwen2.5:7b": 0.9
+        },
+        "justification": {
+          "llama3.1:8b": "The attacker can take over the domain controller, which implies privilege escalation.",
+          "qwen2.5:7b": "The vulnerability allows an attacker to establish a connection and take over the domain controller, which is a form of privilege escalation."
+        },
+        "agreement": "both"
+      },
+      {
+        "technique_id": "T1210",
+        "technique_name": "Exploitation of Remote Services",
+        "link": "https://attack.mitre.org/techniques/T1210/",
+        "chosen_by": [
+          "llama3.1:8b"
+        ],
+        "llm_confidence": {
+          "llama3.1:8b": 0.9
+        },
+        "justification": {
+          "llama3.1:8b": "The vulnerability is triggered over the network against a domain controller using the Netlogon Remote Protocol."
+        },
+        "agreement": "one"
+      },
+      {
+        "technique_id": "T1598",
+        "technique_name": "Phishing for Information",
+        "link": "https://attack.mitre.org/techniques/T1598/",
+        "chosen_by": [
+          "qwen2.5:7b"
+        ],
+        "llm_confidence": {
+          "qwen2.5:7b": 0.7
+        },
+        "justification": {
+          "qwen2.5:7b": "While not directly exploiting the vulnerability, an attacker might use this to gather additional information or credentials to exploit the domain controller further."
+        },
+        "agreement": "one"
+      },
+      {
+        "technique_id": "T1666",
+        "technique_name": "Modify Cloud Resource Hierarchy",
+        "link": "https://attack.mitre.org/techniques/T1666/",
+        "chosen_by": [
+          "qwen2.5:7b"
+        ],
+        "llm_confidence": {
+          "qwen2.5:7b": 0.5
+        },
+        "justification": {
+          "qwen2.5:7b": "Although not directly related, the attacker could potentially use the compromised domain controller to modify cloud resources, given the impact of taking over the domain controller."
+        },
+        "agreement": "one"
+      }
+    ]
+  },
+  {
+    "cve": "CVE-2021-21975",
+    "techniques": [
+      {
+        "technique_id": "T1210",
+        "technique_name": "Exploitation of Remote Services",
+        "link": "https://attack.mitre.org/techniques/T1210/",
+        "chosen_by": [
+          "llama3.1:8b"
+        ],
+        "llm_confidence": {
+          "llama3.1:8b": 0.9
+        },
+        "justification": {
+          "llama3.1:8b": "The attacker can exploit the SSRF vulnerability in the vRealize Operations Manager API to steal administrative credentials, which is a remote service exploitation."
+        },
+        "agreement": "one"
+      },
+      {
+        "technique_id": "T1213",
+        "technique_name": "Data from Information Repositories",
+        "link": "https://attack.mitre.org/techniques/T1213/",
+        "chosen_by": [
+          "llama3.1:8b"
+        ],
+        "llm_confidence": {
+          "llama3.1:8b": 0.8
+        },
+        "justification": {
+          "llama3.1:8b": "The attacker can use the stolen administrative credentials to access sensitive information in the API, which is a data from information repositories attack."
+        },
+        "agreement": "one"
+      },
+      {
+        "technique_id": "T1552",
+        "technique_name": "Unsecured Credentials",
+        "link": "https://attack.mitre.org/techniques/T1552/",
+        "chosen_by": [
+          "llama3.1:8b"
+        ],
+        "llm_confidence": {
+          "llama3.1:8b": 0.7
+        },
+        "justification": {
+          "llama3.1:8b": "The attacker can steal the administrative credentials, which are unsecured, to gain access to the API."
+        },
+        "agreement": "one"
+      },
+      {
+        "technique_id": "T1682",
+        "technique_name": "Query Public AI Services",
+        "link": "https://attack.mitre.org/techniques/T1682/",
+        "chosen_by": [
+          "qwen2.5:7b"
+        ],
+        "llm_confidence": {
+          "qwen2.5:7b": 0.8
+        },
+        "justification": {
+          "qwen2.5:7b": "The Server Side Request Forgery (SSRF) can be used to query public AI services, potentially exfiltrating sensitive information."
+        },
+        "agreement": "one"
+      },
+      {
+        "technique_id": "T1689",
+        "technique_name": "Downgrade Attack",
+        "link": "https://attack.mitre.org/techniques/T1689/",
+        "chosen_by": [
+          "qwen2.5:7b"
+        ],
+        "llm_confidence": {
+          "qwen2.5:7b": 0.7
+        },
+        "justification": {
+          "qwen2.5:7b": "The attacker can use the SSRF to downgrade the security of the API request, potentially leading to the exposure of credentials."
+        },
+        "agreement": "one"
+      }
+    ]
+  }
+]
