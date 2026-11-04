@@ -103,8 +103,10 @@ I also learned that just because a model says it is confident, it doesn't mean i
         "qwen2.5:7b": "The vulnerability allows an attacker to establish a connection and take over the domain controller, which is a form of privilege escalation."
       },
       "agreement": "both"
-    }
-
+    } 
+  ]
+}
+```
 
 ## RAG version (`rag.py`)
 
@@ -164,6 +166,3 @@ Across both models, RAG found all 6 reference techniques, compared with 2 of 6 i
 **CVE-2021-21975 (vRealize SSRF).** Both models chose T1190, which is the clearest mapping: a vulnerability in an internet-facing API. Llama added T1212, which fits because the stated goal is stealing administrative credentials. Its third pick, T1539 (Steal Web Session Cookie), is speculation, and its own justification admits it ("it's possible that..."). Qwen's T1675 (ESXi Administration Command) is a follow-up action: it assumes the stolen credentials are later used on an ESXi host.
 
 **Overall.** Llama was more precise, and Qwen was more speculative and followed the "no follow-up actions" rule less reliably. A pattern I noticed is that the weak picks tend to have hedging justifications, with words like "potentially", "it's possible" or "if the stolen credentials are used". The strong picks are stated directly. That could be the basis for a future filter that flags or drops hedged picks automatically.
-  ]
-}
-```
