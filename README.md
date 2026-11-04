@@ -104,6 +104,66 @@ I also learned that just because a model says it is confident, it doesn't mean i
       },
       "agreement": "both"
     }
+
+
+## RAG version (`rag.py`)
+
+### What it does
+
+The main version gives the LLM all ~200 ATT&CK technique names and asks it to choose. `rag.py` adds a retrieval step first:
+
+1. Every parent technique's name and MITRE description is turned into an embedding with `nomic-embed-text` (run through Ollama). This is done once and cached in `technique_embeddings.json`.
+2. Each CVE description is embedded the same way.
+3. The 15 techniques with the highest cosine similarity to the CVE are kept as candidates.
+4. Only those 15, with a short MITRE description of each, go into the prompt, and the model must choose from them.
+
+Retrieval compares meaning rather than exact words. The Chrome CVE says "victim visits a malicious page", while MITRE's T1189 (Drive-by Compromise) describes a user visiting a website while browsing. They share few words, and T1189 still ranked first.
+
+### How to run
+
+```bash
+ollama pull nomic-embed-text
+python rag.py
+```
+
+The first run takes about a minute longer while it embeds the techniques. Delete `technique_embeddings.json` if you switch to a different `enterprise-attack.json`.
+
+Outputs: `output_rag_llama3.1_8b.json`, `output_rag_qwen2.5_7b.json` and `final_output_rag.json`.
+
+### Retrieval check
+
+Every reference technique appeared in its CVE's top 15:
+
+| CVE | Reference technique | Rank in retrieved list |
+|---|---|---|
+| CVE-2021-21148 | T1189 Drive-by Compromise | 1 |
+| | T1203 Exploitation for Client Execution | 12 |
+| CVE-2020-1472 | T1068 Exploitation for Privilege Escalation | 3 |
+| | T1210 Exploitation of Remote Services | 11 |
+| CVE-2021-21975 | T1190 Exploit Public-Facing Application | 1 |
+| | T1212 Exploitation for Credential Access | 5 |
+
+Retrieval found the right candidates every time, so any remaining errors come from the LLM's choice.
+
+### Results
+
+| CVE | Llama 3.1 8B | Qwen 2.5 7B | Both agree |
+|---|---|---|---|
+| CVE-2021-21148 | T1189, T1204 | T1185, T1203, T1606 | none |
+| CVE-2020-1472 | T1068, T1210, T1548 | T1210, T1548 | T1210, T1548 |
+| CVE-2021-21975 | T1190, T1212, T1539 | T1190, T1675 | T1190 |
+
+Across both models, RAG found all 6 reference techniques, compared with 2 of 6 in the best run without retrieval. Llama alone found 5 of 6.
+
+### My thoughts on the responses
+
+**CVE-2021-21148 (Chrome).** Llama's answer is the one I'd give myself. T1189 describes how the victim is reached (visiting a malicious page), and T1204 reflects that the victim has to take that action. Qwen picked T1203, which is also correct, since the exploit runs code inside the browser. Its other two picks, Browser Session Hijacking and Forge Web Credentials, describe what an attacker might do afterwards, not what the vulnerability provides. The models agreed on nothing here even though both were partly right, so a lack of agreement doesn't always mean the answers are wrong.
+
+**CVE-2020-1472 (Zerologon).** Llama's T1068 and T1210 match the reference. Both models also chose T1548 (Abuse Elevation Control Mechanism), which I think is a weaker fit: T1548 covers bypassing mechanisms like UAC or sudo, while Zerologon exploits a flaw in the Netlogon protocol itself. This is a case where the two models agreed on a technique that isn't the best answer, which shows that agreement raises confidence but doesn't prove correctness.
+
+**CVE-2021-21975 (vRealize SSRF).** Both models chose T1190, which is the clearest mapping: a vulnerability in an internet-facing API. Llama added T1212, which fits because the stated goal is stealing administrative credentials. Its third pick, T1539 (Steal Web Session Cookie), is speculation, and its own justification admits it ("it's possible that..."). Qwen's T1675 (ESXi Administration Command) is a follow-up action: it assumes the stolen credentials are later used on an ESXi host.
+
+**Overall.** Llama was more precise, and Qwen was more speculative and followed the "no follow-up actions" rule less reliably. A pattern I noticed is that the weak picks tend to have hedging justifications, with words like "potentially", "it's possible" or "if the stolen credentials are used". The strong picks are stated directly. That could be the basis for a future filter that flags or drops hedged picks automatically.
   ]
 }
 ```
