@@ -1,0 +1,66 @@
+[
+  {
+    "cve": "CVE-2021-21148",
+    "techniques": [
+      {
+        "technique_id": "T1210",
+        "technique_name": "Exploitation of Remote Services",
+        "link": "https://attack.mitre.org/techniques/T1210/",
+        "confidence": 0.9,
+        "justification": "The vulnerability is triggered by a remote attacker exploiting a heap buffer overflow in the V8 engine, which is a service in the Chrome browser."
+      },
+      {
+        "technique_id": "T1204",
+        "technique_name": "User Execution",
+        "link": "https://attack.mitre.org/techniques/T1204/",
+        "confidence": 0.8,
+        "justification": "The attacker requires the victim to visit a malicious page, which is a form of user execution."
+      }
+    ]
+  },
+  {
+    "cve": "CVE-2020-1472",
+    "techniques": [
+      {
+        "technique_id": "T1210",
+        "technique_name": "Exploitation of Remote Services",
+        "link": "https://attack.mitre.org/techniques/T1210/",
+        "confidence": 0.9,
+        "justification": "The vulnerability is triggered over the network against a domain controller using the Netlogon Remote Protocol."
+      },
+      {
+        "technique_id": "T1068",
+        "technique_name": "Exploitation for Privilege Escalation",
+        "link": "https://attack.mitre.org/techniques/T1068/",
+        "confidence": 0.8,
+        "justification": "The attacker can take over the domain controller, which implies privilege escalation."
+      }
+    ]
+  },
+  {
+    "cve": "CVE-2021-21975",
+    "techniques": [
+      {
+        "technique_id": "T1210",
+        "technique_name": "Exploitation of Remote Services",
+        "link": "https://attack.mitre.org/techniques/T1210/",
+        "confidence": 0.9,
+        "justification": "The attacker can exploit the SSRF vulnerability in the vRealize Operations Manager API to steal administrative credentials, which is a remote service exploitation."
+      },
+      {
+        "technique_id": "T1213",
+        "technique_name": "Data from Information Repositories",
+        "link": "https://attack.mitre.org/techniques/T1213/",
+        "confidence": 0.8,
+        "justification": "The attacker can use the stolen administrative credentials to access sensitive information in the API, which is a data from information repositories attack."
+      },
+      {
+        "technique_id": "T1552",
+        "technique_name": "Unsecured Credentials",
+        "link": "https://attack.mitre.org/techniques/T1552/",
+        "confidence": 0.7,
+        "justification": "The attacker can steal the administrative credentials, which are unsecured, to gain access to the API."
+      }
+    ]
+  }
+]

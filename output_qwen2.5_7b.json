@@ -1,0 +1,66 @@
+[
+  {
+    "cve": "CVE-2021-21148",
+    "techniques": [
+      {
+        "technique_id": "T1059",
+        "technique_name": "Command and Scripting Interpreter",
+        "link": "https://attack.mitre.org/techniques/T1059/",
+        "confidence": 0.9,
+        "justification": "Exploiting the heap buffer overflow allows the attacker to execute arbitrary code through a crafted HTML page, which is essentially running a command or script."
+      },
+      {
+        "technique_id": "T1210",
+        "technique_name": "Exploitation of Remote Services",
+        "link": "https://attack.mitre.org/techniques/T1210/",
+        "confidence": 0.8,
+        "justification": "The attacker can exploit the vulnerability via a network request, specifically by tricking the victim into visiting a malicious page."
+      }
+    ]
+  },
+  {
+    "cve": "CVE-2020-1472",
+    "techniques": [
+      {
+        "technique_id": "T1068",
+        "technique_name": "Exploitation for Privilege Escalation",
+        "link": "https://attack.mitre.org/techniques/T1068/",
+        "confidence": 0.9,
+        "justification": "The vulnerability allows an attacker to establish a connection and take over the domain controller, which is a form of privilege escalation."
+      },
+      {
+        "technique_id": "T1598",
+        "technique_name": "Phishing for Information",
+        "link": "https://attack.mitre.org/techniques/T1598/",
+        "confidence": 0.7,
+        "justification": "While not directly exploiting the vulnerability, an attacker might use this to gather additional information or credentials to exploit the domain controller further."
+      },
+      {
+        "technique_id": "T1666",
+        "technique_name": "Modify Cloud Resource Hierarchy",
+        "link": "https://attack.mitre.org/techniques/T1666/",
+        "confidence": 0.5,
+        "justification": "Although not directly related, the attacker could potentially use the compromised domain controller to modify cloud resources, given the impact of taking over the domain controller."
+      }
+    ]
+  },
+  {
+    "cve": "CVE-2021-21975",
+    "techniques": [
+      {
+        "technique_id": "T1682",
+        "technique_name": "Query Public AI Services",
+        "link": "https://attack.mitre.org/techniques/T1682/",
+        "confidence": 0.8,
+        "justification": "The Server Side Request Forgery (SSRF) can be used to query public AI services, potentially exfiltrating sensitive information."
+      },
+      {
+        "technique_id": "T1689",
+        "technique_name": "Downgrade Attack",
+        "link": "https://attack.mitre.org/techniques/T1689/",
+        "confidence": 0.7,
+        "justification": "The attacker can use the SSRF to downgrade the security of the API request, potentially leading to the exposure of credentials."
+      }
+    ]
+  }
+]
