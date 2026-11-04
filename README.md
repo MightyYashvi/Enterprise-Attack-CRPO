@@ -19,10 +19,10 @@ I chose Llama 3.1 8B and Qwen 2.5 7B because they’re comparable-sized open-sou
    ```bash
    pip install -r requirements.txt
    ```
-4. Download `enterprise-attack.json` from [MITRE's attack-stix-data repository](https://github.com/mitre-attack/attack-stix-data) (folder `enterprise-attack`) and place it next to `cve.py`.
+4. Download `enterprise-attack.json` from [MITRE's attack-stix-data repository](https://github.com/mitre-attack/attack-stix-data) (folder `enterprise-attack`) and place it next to `LLM Test programming main code.py`.
 5. Make sure Ollama is running, then:
    ```bash
-   python cve.py
+   python LLM Test programming main code.py
    ```
 
 ## Output files
